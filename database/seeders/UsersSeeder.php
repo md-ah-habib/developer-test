@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 use App\Models\User;
-
+use App\Models\Lesson;
 use Illuminate\Database\Seeder;
 
 class UsersSeeder extends Seeder
@@ -16,6 +16,8 @@ class UsersSeeder extends Seeder
     {
         $users = User::factory()
             ->count(20)
-            ->create();
+            ->create()->each(function($user) {
+                $user->watched()->attach(Lesson::factory()->create()->id);
+          });
     }
 }
