@@ -25,15 +25,21 @@ class Achievement{
 
     }
     
-    public function achievementUnlocked(){
+    public function commentachievementUnlocked(){
         $achievement = [];
         $commentachievement = $this->getCommentAchievement($this->totalComment);
-        $watchedachievement = $this->getLessonAchievement($this->totalWatched);
         if($commentachievement != ""){
             $achievement['achievement_name'] =$commentachievement;
             $achievement['user'] = $this->user;
-        }else if($watchedachievement != ""){
-            $achievement['achievement_name'] = $watchedachievement;
+        }
+        return $achievement;
+    }
+    
+    public function lessonachievementUnlocked(){
+        $achievement = [];
+        $watchedachievement = $this->getLessonAchievement($this->totalWatched);
+        if($watchedachievement != ""){
+            $achievement['badge_name'] = $watchedachievement;
             $achievement['user'] = $this->user;
         }
         return $achievement;
